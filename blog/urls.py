@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from blog.views import index
+from blog.views import index, categoryDetail, createCategory, updateCategory, deleteCategory
 
 urlpatterns = [
     path('', index, name='home'),
-
+    path("category/<int:category_id>/detail",categoryDetail,name="category"),
+    path("category/create", createCategory, name="create-category"),
+    path("category/update", updateCategory, name="update-category"),
+    path("category/<int:category_id>/delete", deleteCategory, name="delete-category"),
 ]

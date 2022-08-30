@@ -6,6 +6,20 @@
 {% block content %}
 {{  content }}
 {%  for category in categories  %}
-    <p>{{ category }}</p>
-    {% endfor %}
+    <p>
+        <a href="{% url 'category' category_id=category.id %}"> {{ category }}</a>
+    <a href="{% url 'delete-category' category_id=category.id %}"> Delete </a>
+    </p>
+
+{% endfor %}
+
+    <form action="{% url 'create-category' %}" method="POST">
+    {% csrf_token %}
+<input type="text" placeholder="Category name"
+       name="category_name">
+    <button>Add</button>
+
+
+
+    </form>
 {%  endblock %}
