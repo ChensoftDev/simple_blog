@@ -16,7 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from blog.views import index, categoryDetail, createCategory, updateCategory, deleteCategory
+
+from blog.views import index, categoryDetail, createCategory, updateCategory, deleteCategory, listPosts, detailPost, \
+    createPost, updatePost, deletePost, file_upload, SendEmail, likePost, addComment;
 
 urlpatterns = [
     path('', index, name='home'),
@@ -24,4 +26,15 @@ urlpatterns = [
     path("category/create", createCategory, name="create-category"),
     path("category/update", updateCategory, name="update-category"),
     path("category/<int:category_id>/delete", deleteCategory, name="delete-category"),
+    path("post/",listPosts.as_view(),name="posts"),
+    path("post/<int:pk>/detail", detailPost.as_view(), name="post-detail"),
+    path("post/create", createPost.as_view(), name="post-create"),
+
+    path("post/<int:pk>/update", updatePost.as_view(), name="post-update"),
+    path("post/<int:pk>/delete", deletePost.as_view(), name="post-delete"),
+    path("send_email", SendEmail,name="send_email"),
+    path("file_upload", file_upload, name="file_upload"),
+    path("likepost", likePost, name="like_post"),
+    path("addComment", addComment, name="add_comment"),
+
 ]

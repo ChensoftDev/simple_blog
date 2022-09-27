@@ -5,6 +5,14 @@
 
 {% block content %}
 {{  content }}
+    {% if user.is_authenticated  %}
+    {{ user.first_name }}
+        {% for group in user.groups.all %}
+        {% if group.name == "Student" %}
+            <p>Chris is a student</p>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 {%  for category in categories  %}
     <p>
         <a href="{% url 'category' category_id=category.id %}"> {{ category }}</a>
